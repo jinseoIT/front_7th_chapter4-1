@@ -8,6 +8,9 @@
   },
   "type": "module",
   "scripts": {
+    "dev": "concurrently -n \"Vanilla,React\" -c \"bgMagenta,bgGreen\" \"pnpm run dev:vanilla\" \"pnpm run dev:react\"",
+    "dev:vanilla": "pnpm -F @hanghae-plus/shopping-vanilla dev",
+    "dev:react": "pnpm -F @hanghae-plus/shopping-react dev",
     "build": "pnpm run -r build",
     "lint:fix": "pnpm run -r lint:fix",
     "tsc": "pnpm run -r tsc",
