@@ -35,9 +35,10 @@ export async function homeLoader(query = {}) {
 
     return {
       products: productsResponse.products,
+      categories,
+      totalCount: productsResponse.pagination.total,
       pagination: productsResponse.pagination,
       filters: productsResponse.filters,
-      categories,
     };
   } catch (error) {
     console.error("홈페이지 데이터 로드 실패:", error);
