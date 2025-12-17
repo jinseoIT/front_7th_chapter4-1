@@ -10,6 +10,7 @@ import { getProduct, getProducts } from "../api/server/productApi.js";
  * @returns {Promise<Object>} 상품 상세 페이지 렌더링에 필요한 모든 데이터
  */
 export async function productDetailLoader(query = {}, params = {}) {
+  console.log("query ::", query);
   const { id: productId } = params;
 
   if (!productId) {
