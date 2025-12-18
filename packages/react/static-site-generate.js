@@ -16,7 +16,7 @@ async function generateStaticSite() {
     // 1. SSR 렌더러와 mock 데이터 import
     const { render } = await import("./dist/react-ssr/main-server.js");
     const itemsModule = await import("./src/mocks/items.json", {
-      assert: { type: "json" },
+      with: { type: "json" },
     });
     const items = itemsModule.default;
 
