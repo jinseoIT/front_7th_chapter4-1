@@ -6,16 +6,22 @@ import type { StringRecord } from "./types";
  * 간단한 라우트 매처
  */
 function matchRoute(pathname: string): { route: string; params: StringRecord } | null {
+  // BASE_URL 제거 (production SSG/SSR용)
+  const basePath = "/front_7th_chapter4-1/react";
+  if (pathname.startsWith(basePath)) {
+    pathname = pathname.slice(basePath.length) || "/";
+  }
+
   // 홈페이지: /
   if (pathname === "/" || pathname === "") {
     return { route: "/", params: {} };
   }
 
-  // 상품 상세: /products/:id/
-  const productMatch = pathname.match(/^\/products\/([^/]+)\/?$/);
+  // 상품 상세: /product/:id/
+  const productMatch = pathname.match(/^\/product\/([^/]+)\/?$/);
   if (productMatch) {
     return {
-      route: "/products/:id/",
+      route: "/product/:id/",
       params: { id: productMatch[1] },
     };
   }
@@ -78,7 +84,7 @@ export const render = async (url: string, query: StringRecord = {}) => {
     }
 
     // 상품 상세 페이지
-    if (match.route === "/products/:id/") {
+    if (match.route === "/product/:id/") {
       console.log(`Loading product detail data for ${match.params.id}...`);
       const data = await productDetailLoader(query, match.params);
       console.log("Rendering product detail page...");
